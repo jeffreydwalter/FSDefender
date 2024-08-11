@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/FSDefender/copilot-chat/6f60c431/sessions
+/.vs
+/FSDefender/x64
+/FSDKmCommonUtils/x64
+/FSDManager/x64/Release
+/FSDUmCommonUtils/x64/Release
+/LZJDistance/x64/Release
+/x64
