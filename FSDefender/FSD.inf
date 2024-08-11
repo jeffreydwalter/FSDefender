@@ -1,7 +1,6 @@
 ;;;
 ;;; FSD
 ;;;
-
 [Version]
 Signature   = "$Windows NT$"
 ; TODO - Change the Class and ClassGuid to match the Load Order Group value, see https://msdn.microsoft.com/en-us/windows/hardware/gg462963
@@ -12,6 +11,7 @@ ClassGuid = {b86dff51-a31e-4bac-b3cf-e8cfe75c9fc2}
 Provider    = %ManufacturerName%
 DriverVer = 04/26/2018,13.38.4.170
 CatalogFile = FSD.cat
+PnpLockdown = 1 ; Secure the driver installation
 
 [DestinationDirs]
 DefaultDestDir                    = 12
@@ -22,22 +22,24 @@ MiniFilter.DeleteDriverFiles    = 12            ;%windir%\system32\drivers
 ;; Default install sections
 ;;
 
-[DefaultInstall]
+[DefaultInstall.NTAMD64]
 OptionDesc          = %ServiceDescription%
-CopyFiles           = MiniFilter.CopyDriverFiles
+CopyFiles         = MiniFilter.CopyDriverFiles
 
-[DefaultInstall.Services]
-AddService          = %ServiceName%,,MiniFilter.Service
+[DefaultInstall.NTAMD64.Services]
+AddService        = %ServiceName%,,MiniFilter.Service
 
 ;;
 ;; Default uninstall sections
 ;;
 
-[DefaultUninstall]
-DelFiles   = MiniFilter.DeleteDriverFiles
+[DefaultUninstall.NTAMD64] ; Add architecture decoration for 64-bit systems
+LegacyUninstall=1
+DelFiles = MiniFilter.DeleteDriverFiles
 
-[DefaultUninstall.Services]
-DelService = %ServiceName%,0x200      ;Ensure service is stopped before deleting
+[DefaultUninstall.NTAMD64.Services]
+DelService = %ServiceName%,0x200 ; Ensure service is stopped before deleting
+
 
 [MiniFilter.DeleteDriverFiles]
 %DriverName%.sys,,,0x00010001 ;(DELFLG_IN_USE | DELFLG_IN_USE1)

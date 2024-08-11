@@ -2,11 +2,12 @@
 #include <ntddk.h>
 
 void *__cdecl operator new(size_t size) {
-    return ExAllocatePoolWithTag(NonPagedPool, size, 'FSDm');
+    return ExAllocatePool2(NonPagedPool, size, 'FSDm');
 }
 
 void* __cdecl operator new[](size_t size) {
-    return ExAllocatePoolWithTag(NonPagedPool, size, 'FSDm');
+    return ExAllocatePool2(NonPagedPool, size, 'FSDm');
+
 }
 
 void __cdecl operator delete(void *object, unsigned __int64 size) {

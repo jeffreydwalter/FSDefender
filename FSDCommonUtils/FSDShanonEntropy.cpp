@@ -4,7 +4,7 @@
 
 #define M_LOG2E 1.4426950408889634074 
 
-static inline double log2(double n)
+static inline double mylog2(double n)
 {
     return log(n) * M_LOG2E;
 }
@@ -38,7 +38,7 @@ double CalculateShannonEntropy(PVOID pvBuffer, size_t cbBuffer)
         {
 
             double dTemp = (double)pAlphabet[i] / (double)cbData;
-            dEntropy += (-1) * dTemp * log2(dTemp);
+            dEntropy += (-1) * dTemp * mylog2(dTemp);
         }
     }
 

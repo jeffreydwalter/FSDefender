@@ -10,3 +10,17 @@
 /FSDUmCommonUtils/x64/Release
 /LZJDistance/x64/Release
 /x64
+/FSDManager/x64/Debug
+/FSDUmCommonUtils/x64/Debug
+/LZJDistance/x64/Debug
+/FSDKmCommonUtils/Release
+/FSDManager/Release
+/FSDUmCommonUtils/Release
+/LZJDistance/Release
+/packages
+/Release
+/FSDCommonUtils/desktop.ini
+/FSDefender/Release
+*.user
+/FSDefenderTestCert.cer
+/FSDefenderTestCert.pfx
