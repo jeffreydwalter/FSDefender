@@ -75,15 +75,23 @@ Return Value:
 {
     NTSTATUS hr;
 
-    UNREFERENCED_PARAMETER( RegistryPath );
+    UNREFERENCED_PARAMETER(RegistryPath);
 
-    TRACE(TL_FUNCTION_ENTRY, "FSD!DriverEntry: Entered\n");
+    DbgPrint("FSD!DriverEntry: Entered\n");
 
+    DbgPrint("FSD!DriverEntry: About to create CFSDefender instance\n");
     CAutoPtr<CFSDefender> pDefender;
     hr = NewInstanceOf<CFSDefender>(&pDefender, DriverObject);
-    RETURN_IF_FAILED(hr);
+    if (FAILED(hr)) {
+        DbgPrint("FSD!DriverEntry: Failed to create CFSDefender instance. hr = 0x%X\n", hr);
+        return hr;
+    }
+    DbgPrint("FSD!DriverEntry: CFSDefender instance created successfully\n");
 
+    DbgPrint("FSD!DriverEntry: About to detach pDefender to global pointer\n");
     pDefender.Detach(&g);
+    DbgPrint("FSD!DriverEntry: Global pointer set successfully\n");
 
+    DbgPrint("FSD!DriverEntry: Exiting successfully\n");
     return S_OK;
 }

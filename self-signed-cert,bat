@@ -40,7 +40,7 @@ powershell -ExecutionPolicy Bypass -Command "Import-Certificate -FilePath !CertT
 if %errorlevel% neq 0 echo Error importing to TrustedPublisher store & exit /b %errorlevel%
 
 REM Define the path to your driver files
-set DriverPath=C:\Users\quickbooks\source\repos\FSDefender\x64\Release\FSD
+set DriverPath=x64\Release\FSD
 
 REM Sign the driver files
 signtool sign /v /f %CertFile%.pfx /p %Password% /fd SHA256 /t http://timestamp.digicert.com !DriverPath!\FSD.sys
