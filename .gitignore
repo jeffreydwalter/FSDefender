@@ -24,3 +24,4 @@
 *.user
 /FSDefenderTestCert.cer
 /FSDefenderTestCert.pfx
+/.vscode
